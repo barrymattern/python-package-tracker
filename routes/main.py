@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect
 from app.shipping_form import Shipping_Form
 
 bp = Blueprint('main', __name__, url_prefix='')
@@ -11,4 +11,6 @@ def packageTracker():
 @bp.route('/new_package', methods=['GET', 'POST'])
 def newPackage():
     form = Shipping_Form()
+    if (form.validate_on_submit()):
+       return redirect('/')
     return render_template('shipping_request.html', form=form)
