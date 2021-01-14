@@ -2,7 +2,7 @@ from app.shipping_form import Shipping_Form
 from flask import (Flask, render_template, redirect)
 from app.config import Config
 from flask_migrate import Migrate
-from app.models import db
+from app.models import Package, db
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -12,12 +12,20 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def index():
-    return 'Package Tracker'
+    return "<a href='/new_package'>Shipping Request</a>"
 
 
 @app.route('/new_package', methods=['GET', 'POST'])
 def new_package():
     form = Shipping_Form()
     if (form.validate_on_submit()):
+        data = form.data
+        new_package = Package(sender=data["sender"],
+                              recipient=data['recipient'],
+                              origin=data['origin'],
+                              destination=data['destination'],
+                              location=data['origin'])
+        db.session.add(new_package)
+        db.session.commit()
         return redirect('/')
     return render_template('shipping_request.html', form=form)
