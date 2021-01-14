@@ -2,6 +2,7 @@ from app.shipping_form import Shipping_Form
 from flask import (Flask, render_template, redirect)
 from app.config import Config
 from flask_migrate import Migrate
+from app.models import db
 
 app = Flask(__name__)
 app.config.from_object(Config)
