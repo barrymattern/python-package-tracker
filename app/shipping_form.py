@@ -11,6 +11,6 @@ class Shipping_Form(FlaskForm):
         (key, key)) for key in map.keys()], validators=[DataRequired()])
     destination = SelectField('Destination', choices=[tuple(
         (key, key)) for key in map.keys()], validators=[DataRequired()])
-    express_shipping = BooleanField('Express Shipping' default=False)
+    express_shipping = BooleanField('Express Shipping', default=False)
     submit = SubmitField('Submit')
     cancel = SubmitField('Cancel')
