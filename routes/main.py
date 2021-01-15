@@ -7,7 +7,8 @@ bp = Blueprint('main', __name__, url_prefix='')
 
 @bp.route('/')
 def packageTracker():
-    return '<a href="/new_package">Add Package</a>'
+    packages = Package.query.all()
+    return render_template('package_status.html', packages=packages)
 
 @bp.route('/new_package', methods=['GET', 'POST'])
 def newPackage():
