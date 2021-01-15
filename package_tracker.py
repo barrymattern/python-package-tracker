@@ -12,7 +12,13 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def index():
-    return "<a href='/new_package'>Shipping Request</a>"
+    form = Shipping_Form()
+    packages = Package.query.all()
+    # package = {
+    #     'package_id': packages[0].id,
+    #     'package_sender': packages[0].sender
+    # }
+    return render_template('package_status.html', form=form, packages=packages)
 
 
 @app.route('/new_package', methods=['GET', 'POST'])

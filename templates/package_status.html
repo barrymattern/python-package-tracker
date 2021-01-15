@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Status</title>
+</head>
+<body>
+    <a href='/new_package'>Shipping Request</a>
+    <ul>
+        {% for package in packages %}
+            <li>Package ID: {{ package.id }},
+                {{ form.sender.label }}: {{ package.sender }},
+                {{ form.recipient.label }}: {{ package.recipient }}</li>   
+        {% endfor %}
+    </ul>
+</body>
+</html>
