@@ -33,5 +33,6 @@ def new_package():
                               location=data['origin'])
         db.session.add(new_package)
         db.session.commit()
+        Package.advance_all_locations()
         return redirect('/')
     return render_template('shipping_request.html', form=form)

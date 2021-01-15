@@ -11,7 +11,11 @@
         {% for package in packages %}
             <li>Package ID: {{ package.id }},
                 {{ form.sender.label }}: {{ package.sender }},
-                {{ form.recipient.label }}: {{ package.recipient }}</li>   
+                {{ form.recipient.label }}: {{ package.recipient }},
+                {{ form.origin.label }}: {{ package.origin }},
+                {{ form.destination.label }}: {{ package.destination }}
+                Location: {{ package.location }}
+            </li>   
         {% endfor %}
     </ul>
 </body>
